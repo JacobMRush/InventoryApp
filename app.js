@@ -8,6 +8,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+require("dotenv").config;
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+
+const mongoDB = process.env.DEV_MONGODB || process.env.PROD_MONGODB;
+
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+main().catch((err) => {console.log(err)});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
