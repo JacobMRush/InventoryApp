@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import Category from "./category.js";
+
+
+const Category = new Schema({category: String, category_description: String});
+
+Category.virtual("url").get(function() {
+    return "/category" + this._id;
+});
 
 const Item = new Schema({
     item_name: {type: String, required: true, maxLength: 150},
