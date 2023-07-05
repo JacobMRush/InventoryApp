@@ -24,3 +24,4 @@ Item.virtual("url").get(function() {
 
 
 module.exports = mongoose.model("Item", Item);
+module.exports = mongoose.model("Category", Category);
