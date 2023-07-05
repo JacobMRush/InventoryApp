@@ -14,6 +14,10 @@ exports.manga_list = function(req,res,next) {
 exports.manga_details = function(req,res,next) {
     Item.findOne()
 };
+//get items based on category
+exports.manga_category = function(req,res,next) {
+    
+}
 
 //create item
 exports.manga_create = function(req,res,next) {
