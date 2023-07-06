@@ -30,6 +30,7 @@ exports.manga_category = function(req,res,next) {
 //create item
 exports.manga_create = function(req,res,next) {
     //create a new item via request body details?
+    let itemdetails = req.body;
     let citem = new Item({item_name, item_description, item_categories, price, number_in_stock, item_publisher, item_author});
     
     citem.save(function (err) {
