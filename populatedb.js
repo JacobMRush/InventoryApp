@@ -23,7 +23,7 @@ console.log("This script populates some test films, directors, and genres to you
   async function main() {
     console.log("Debug: About to connect");
     await mongoose.connect(mongoDB);
-    await(createItems);
+    await createItems();
     mongoose.connection.close();
   }
 

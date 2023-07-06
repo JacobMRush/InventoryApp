@@ -17,9 +17,5 @@ const Item = new Schema({
     item_author: {type: String, required: true},
 });
 
-Item.virtual("url").get(function() {
-    return "/manga/" + this._id;
-})
-
 
 module.exports = mongoose.model("Item", Item);

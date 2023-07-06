@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 import Item from "../models/saleItem";
 
 //get all items in the list sorted by publisher
-exports.manga_list = function(req,res,next) {
+exports.manga_list = function(req,res,next) { //used
     Item.find({item_title: {$ne: null}, item_publisher: {$ne: null}})
     .sort({item_publisher: 1})
     .exec((err, manga) => {
@@ -11,7 +11,7 @@ exports.manga_list = function(req,res,next) {
     });
 }
 //get a single item's details
-exports.manga_details = function(req,res,next) {
+exports.manga_details = function(req,res,next) { //used
     let mangaID = req.params.id;
     Item.findById(mangaID, (err,doc) => {
         if(err) console.log(err);
@@ -19,7 +19,7 @@ exports.manga_details = function(req,res,next) {
     })
 };
 //get items based on category
-exports.manga_category = function(req,res,next) {
+exports.manga_category = function(req,res,next) { 
     let selectedCategory = req.params.category;
     Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}, (err, docs) => {
         if(err) console.log(err);
