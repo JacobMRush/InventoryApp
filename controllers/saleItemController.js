@@ -12,7 +12,6 @@ exports.manga_list = function(req,res,next) {
 }
 //get a single item's details
 exports.manga_details = function(req,res,next) {
-    //by url
     Item.findOne()
 };
 //get items based on category
