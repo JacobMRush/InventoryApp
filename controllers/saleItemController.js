@@ -12,13 +12,19 @@ exports.manga_list = function(req,res,next) {
 }
 //get a single item's details
 exports.manga_details = function(req,res,next) {
-    Item.findOne()
+    let mangaID = req.params.id;
+    Item.findById(mangaID, (err,doc) => {
+        if(err) console.log(err);
+            res.json(doc);
+    })
 };
 //get items based on category
 exports.manga_category = function(req,res,next) {
-    //by url - /category/${cat}
-    let category = req.params.category;
-    Item.find();
+    let selectedCategory = req.params.category;
+    Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}, (err, docs) => {
+        if(err) console.log(err);
+        res.json(docs);
+    });
 }
 
 //create item
