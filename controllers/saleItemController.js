@@ -19,7 +19,7 @@ exports.manga_details = function(req,res,next) { //used
     })
 };
 //get items based on category
-exports.manga_category = function(req,res,next) { 
+exports.manga_category = function(req,res,next) {  //used
     let selectedCategory = req.params.category;
     Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}, (err, docs) => {
         if(err) console.log(err);
@@ -28,20 +28,11 @@ exports.manga_category = function(req,res,next) {
 }
 
 //create item
-exports.manga_create = function(req,res,next) {
+exports.manga_create = function(req,res,next) { //used
     //create a new item via request body details?
     let itemdetails = req.body;
     let citem = new Item({item_name, item_description, item_categories, price, number_in_stock, item_publisher, item_author});
-    
-    citem.save(function (err) {
-      if (err) {
-        cb(err, null);
-        return;
-      }
-      console.log("New Item: " + citem);
-      MangaItems.push(citem);
-      cb(null, citem);
-    });
+    citem.save();
 };
 //update item
 exports.manga_update = function(req,res,next) {
