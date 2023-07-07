@@ -10,7 +10,6 @@ console.log("This script populates some test films, directors, and genres to you
       return
   }
   */
-  let async = require("async");
   const Item = require("./models/saleItem");
 
   let MangaItems = [];
@@ -27,18 +26,9 @@ console.log("This script populates some test films, directors, and genres to you
     mongoose.connection.close();
   }
 
-  async function itemCreate(item_name, item_description, item_categories, price, number_in_stock, item_publisher, item_author, cb) {
+  async function itemCreate(item_name, item_description, item_categories, price, number_in_stock, item_publisher, item_author) {
     let citem = new Item({item_name, item_description, item_categories, price, number_in_stock, item_publisher, item_author});
-    
-    await citem.save(function (err) {
-      if (err) {
-        cb(err, null);
-        return;
-      }
-      console.log("New Item: " + citem);
-      MangaItems.push(citem);
-      cb(null, citem);
-    });
+    await citem.save();
   }
   async function createItems() {
     console.log("Adding Items");
