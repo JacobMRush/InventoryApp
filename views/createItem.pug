@@ -1,0 +1,13 @@
+extends layout
+
+block content 
+    h1= "Create a new stock item"
+    p="Keep track of stock and current price"
+    form(method="POST" action="/manga/create")
+        input(type="text" placeholder="Listing Title" id="manga-name-create")
+        input(type="text" placeholder="Manga Description" id="manga-description-create")
+        input(type="text" placeholder="Manga Categories" id="manga-categories-create")
+        input(type="number" placeholder='5.00' id="manga-price-create")
+        input(type="number" placeholder='1' id="manga-stock-create")
+        input(type="text"   placeholder="Author Name" id="manga-author-create")
+        input(type="text"   placeholder="Publisher Name" id="manga-publisher-create") 
