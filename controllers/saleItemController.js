@@ -36,7 +36,7 @@ exports.manga_create = function(req,res,next) { //used
 };
 //update item
 exports.manga_update = function(req,res,next) {
-    let mangaID = req.params._id;
+    let mangaID = req.params.id;
     Item.findOneAndUpdate();
 
     //find item to update
@@ -46,11 +46,11 @@ exports.manga_update = function(req,res,next) {
 
 //delete item
 exports.manga_delete = function(req,res,next) {
-    let mangaID = req.params._id;
+    let mangaID = req.params.id;
     Item.findOneAndDelete()
 };
 
 exports.manga_replace = function(req,res,next) {
-    let mangaID = req.params._id;
+    let mangaID = req.params.id;
     Item.findOneAndReplace()
 };

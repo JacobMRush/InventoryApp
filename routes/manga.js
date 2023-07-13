@@ -31,3 +31,5 @@ router.get('/:id/replace', function(req,res,next) {
     res.render('replaceItem');
 })
 router.post('/:id/replace', itemController.manga_replace);
+
+module.exports = router;
