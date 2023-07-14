@@ -9,11 +9,11 @@ var usersRouter = require('./routes/users');
 var mangaRouter = require('./routes/manga');
 
 var app = express();
-require("dotenv").config;
+require("dotenv").config();
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-const mongoDB = process.env.DEV_MONGODB || process.env.PROD_MONGODB;
+const mongoDB = process.env.DEV_MONGODB || process.env.PROD_MONGODB; 
 
 async function main() {
   await mongoose.connect(mongoDB);

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-import Item from "../models/saleItem";
+const Item = require("../models/saleItem");
 
 //get all items in the list sorted by publisher
-exports.manga_list = function(req,res,next) { //used
-    Item.find({item_title: {$ne: null}, item_publisher: {$ne: null}})
-    .sort({item_publisher: 1})
-    .exec((err, manga) => {
-        if(err) return next(err);
-        res.json(manga);
-    });
+exports.manga_list = async function(req,res,next) { //used
+    try {
+        const docs = await Item.find({item_name: {$ne: null}, item_publisher: {$ne: null}}).sort({item_publisher: 1}).exec();
+        res.render('manga', {manga_list: docs});
+    } catch(err) {
+        console.log(err);
+    }
 }
 //get a single item's details
 exports.manga_details = function(req,res,next) { //used

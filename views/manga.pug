@@ -1,0 +1,8 @@
+extends layout 
+
+block content
+    h1="YoA"
+    each val in manga_list
+        section(class="manga-card")
+            h1= val.item_name
+            p= val

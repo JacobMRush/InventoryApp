@@ -8,7 +8,7 @@ const Item = new Schema({
     item_categories: [
         {
             category: String,
-            category_description: String,
+            id: Number,
         }
     ],
     price: {type: Number, min: 10.00},
