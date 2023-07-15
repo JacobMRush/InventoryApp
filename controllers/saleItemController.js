@@ -11,12 +11,14 @@ exports.manga_list = async function(req,res,next) { //used
     }
 }
 //get a single item's details
-exports.manga_details = function(req,res,next) { //used
+exports.manga_details = async function(req,res,next) { //used
     let mangaID = req.params.id;
-    Item.findById(mangaID, (err,doc) => {
-        if(err) console.log(err);
-            res.json(doc);
-    })
+    try {
+        const doc = await Item.findById(mangaID).exec();
+        res.render("viewItem", {item: doc});
+    } catch(err) {
+        console.log(err);
+    }
 };
 //get items based on category
 exports.manga_category = function(req,res,next) {  //used
