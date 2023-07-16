@@ -49,7 +49,7 @@ exports.manga_create = async function(req,res,next) { //used
     try {
         let itemdetails = req.body; //probably should verify that these are non-empty 
         let citem = new Item(itemdetails);
-        citem.save();
+        await citem.save();
         res.render('manga');
     } catch(err) {
         res.send("Error creating item");
