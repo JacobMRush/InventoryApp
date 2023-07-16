@@ -19,9 +19,7 @@ router.get('/:id/update', function(req,res,next) {
 router.get('/category/:category', itemController.manga_category);
 
 //render and post create item
-router.get('/create', function(req,res,next) { 
-    res.render('createItem');
-});
+router.get('/create', itemController.get_manga_create);
 router.post('/create', itemController.manga_create);
 
 router.post('/:id/delete', itemController.manga_delete);

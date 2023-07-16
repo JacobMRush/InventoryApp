@@ -33,13 +33,28 @@ exports.manga_category = async function(req,res,next) {  //used
         console.log(err);
     }
 }
+//get create item page
+exports.get_manga_create = async function (req,res, next) {
+    try {
+        res.render('createItem');
+    } catch(err) {
+        res.render('404');
+        console.log(err);
+    }
+}
 
 //create item
-exports.manga_create = function(req,res,next) { //used
+exports.manga_create = async function(req,res,next) { //used
     //create a new item via request body details?
-    let itemdetails = req.body; //probably should verify that these are non-empty 
-    let citem = new Item(itemdetails);
-    citem.save();
+    try {
+        let itemdetails = req.body; //probably should verify that these are non-empty 
+        let citem = new Item(itemdetails);
+        citem.save();
+        res.render('manga');
+    } catch(err) {
+        res.send("Error creating item");
+        console.log(err);
+    }
 };
 //update item
 exports.manga_update = function(req,res,next) {
