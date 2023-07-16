@@ -21,12 +21,14 @@ exports.manga_details = async function(req,res,next) { //used
     }
 };
 //get items based on category
-exports.manga_category = function(req,res,next) {  //used
+exports.manga_category = async function(req,res,next) {  //used
     let selectedCategory = req.params.category;
-    Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}, (err, docs) => {
-        if(err) console.log(err);
-        res.json(docs);
-    });
+    try {
+        const docs = await Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}.exec());
+        res.render("viewCatergory", {manga_category: docs});
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 //create item
