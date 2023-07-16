@@ -36,7 +36,7 @@ console.log("This script populates some test films, directors, and genres to you
         itemCreate(
             "Chainsaw Man Vol. 1-11",
             "Chainsaw Man Vol. 1-11: Part 1 Brand New",
-            [{category: "Supernatural", category_description: ""}, {category: "Action", category_description: ""}],
+            [{category: "Supernatural"}, {category: "Action"}],
             115.00,
             3,
             "VIZ BOOKS",
@@ -45,7 +45,7 @@ console.log("This script populates some test films, directors, and genres to you
         itemCreate(
             "Kaguya-Sama Love is War Vol. 9-22",
             "Kaguya-Sama Love is war volumes 9-22 Brand New",
-            [{category: "Comedy", category_description: ""}, {category: "Romance", category_description: ""}],
+            [{category: "Comedy"}, {category: "Romance"}],
             115.00,
             2,
             "VIZ BOOKS",
@@ -53,8 +53,8 @@ console.log("This script populates some test films, directors, and genres to you
         ),
         itemCreate(
             "Jujutsu Kaisen Vol. 1-19",
-            "Jujutsu Kiasen volumes 1-19 Brand New",
-            [{category: "Battles", category_description: ""}, {category: "Action", category_description: ""}, {category: "Supernatural", category_description: ""}],
+            "Jujutsu Kaisen volumes 1-19 Brand New",
+            [{category: "Battles"}, {category: "Action"}, {category: "Supernatural"}],
             150.00,
             3,
             "VIZ BOOKS",
