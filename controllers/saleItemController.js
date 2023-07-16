@@ -13,10 +13,12 @@ exports.manga_list = async function(req,res,next) { //used
 //get a single item's details
 exports.manga_details = async function(req,res,next) { //used
     let mangaID = req.params.id;
+    console.log(mangaID);
     try {
         const doc = await Item.findById(mangaID).exec();
-        res.render("viewItem", {item: doc});
+        res.render("viewItem", {doc: doc});
     } catch(err) {
+        res.render('404');
         console.log(err);
     }
 };

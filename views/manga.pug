@@ -4,10 +4,11 @@ block content
     h1="Full Inventory"
     section(class="full-manga-section")
         each val in manga_list
-            section(class="manga-card")
-                h1= val.item_name
-                p= val.item_description 
-                p= `$${val.price}.99`
-                p= `${val.number_in_stock} left in stock`
-                p= `${val.item_publisher}`
-                p= `${val.item_author}`
+            a(href=`/manga/${val._id}`)
+                section(class="manga-card")
+                    h1= val.item_name
+                    p= val.item_description 
+                    p= `$${val.price}.99`
+                    p= `${val.number_in_stock} left in stock`
+                    p= `${val.item_publisher}`
+                    p= `${val.item_author}`
