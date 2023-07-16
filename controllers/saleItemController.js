@@ -26,9 +26,10 @@ exports.manga_details = async function(req,res,next) { //used
 exports.manga_category = async function(req,res,next) {  //used
     let selectedCategory = req.params.category;
     try {
-        const docs = await Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}.exec());
-        res.render("viewCatergory", {manga_category: docs});
+        const docs = await Item.find({item_categories: {$elemMatch: {category: selectedCategory}}}).exec();
+        res.render("viewCategory", {category_list: docs});
     } catch(err) {
+        res.render('404');
         console.log(err);
     }
 }

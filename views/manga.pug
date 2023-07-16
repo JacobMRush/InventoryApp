@@ -12,3 +12,5 @@ block content
                     p= `${val.number_in_stock} left in stock`
                     p= `${val.item_publisher}`
                     p= `${val.item_author}`
+                    each cat in val.item_categories
+                        p= `Categories: ${cat.category}`
