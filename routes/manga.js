@@ -24,10 +24,7 @@ router.post('/create', itemController.manga_create);
 
 router.post('/:id/delete', itemController.manga_delete);
 
-
-router.get('/:id/replace', function(req,res,next) {
-    res.render('replaceItem');
-})
+router.get('/:id/replace', itemController.get_manga_replace);
 router.post('/:id/replace', itemController.manga_replace);
 
 module.exports = router;
