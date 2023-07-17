@@ -57,9 +57,14 @@ exports.manga_create = async function(req,res,next) { //used
     }
 };
 //update item
-exports.manga_update = function(req,res,next) {
+exports.manga_update = async function(req,res,next) {
     let mangaID = req.params.id;
-    Item.findOneAndUpdate();
+    try {
+        const doc = await Item.findOneAndUpdate();
+    } catch(err) {
+        res.render('404');
+        console.log(err);
+    }
 
     //find item to update
     //change and update fields that are sent to us
@@ -67,12 +72,23 @@ exports.manga_update = function(req,res,next) {
 };
 
 //delete item
-exports.manga_delete = function(req,res,next) {
+exports.manga_delete = async function(req,res,next) {
     let mangaID = req.params.id;
-    Item.findOneAndDelete()
+    try {
+        const doc = await Item.findOneAndDelete();
+    } catch(err) {
+        res.render('404');
+        console.log(err);
+    }
 };
 
-exports.manga_replace = function(req,res,next) {
+exports.manga_replace = async function(req,res,next) {
     let mangaID = req.params.id;
-    Item.findOneAndReplace()
+    try {
+        const doc = await Item.findOneAndReplace();
+
+    } catch(err) {
+        res.render('404');
+        console.log(err);
+    }
 };
