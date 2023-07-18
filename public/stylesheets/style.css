@@ -33,3 +33,16 @@ a {
   align-items: center;
   flex-direction: column;
 }
+.manga-categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center ;
+}
+.manga-cat-text {
+  font-weight: 100;
+  padding-right: 5px;
+}
+#manga-cat-spacer {
+  padding-right: 10px;
+}
