@@ -3,12 +3,12 @@ html {
   height: 100%;
 }
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   max-width: 100%;
   height: 100%;
+  margin: 0;
 }
-a {
+.manga-click-div {
   text-decoration: none;
   width: 33%;
   height: 50%;
@@ -16,12 +16,13 @@ a {
 }
 .full-manga-section {
   width: 100%;
-  height: 100%;
+  height: 88%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  padding-top: 10px;
   gap: 5px;
 }
 .manga-card {
@@ -45,4 +46,26 @@ a {
 }
 #manga-cat-spacer {
   padding-right: 10px;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: darkslategray;
+  color: whitesmoke;
+  height: 10%;
+}
+
+.nav-button {
+  text-decoration: none;
+  color: whitesmoke;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  color: darkslategrey;
+  background-color: whitesmoke;
 }

@@ -1,9 +1,12 @@
 extends layout 
+
+
 block content
     +navbar
+    h1="Select a manga listing to update"
     section(class="full-manga-section")
         each val in manga_list
-            a(class="manga-click-div" href=`/manga/item/${val._id}`)
+            a(class="manga-click-div" href=`/manga/update/${val._id}`)
                 section(class="manga-card")
                     h1= val.item_name
                     p= val.item_description 
