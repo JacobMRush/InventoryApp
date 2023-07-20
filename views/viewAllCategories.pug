@@ -1,4 +1,5 @@
 extends layout 
 
 block content 
-    h1= all_categories
+    each val in all_categories
+        h1= val

@@ -25,9 +25,21 @@ exports.get_manga_categories = async function (req, res, next) {
     })
       .select("item_categories -_id")
       .exec();
+
+    let unique = docs.map((it) => {
+      return it.item_categories;
+    });
+    let newUnique = unique.map((cat_arr) => {
+      return cat_arr;
+    });
+    console.log(newUnique);
+    newUnique.filter((value, index, array) => {
+      return array.indexOf(value) === index;
+    });
+    console.log(newUnique);
     //docs is an array of documents, all we want is a list of the array from each doc called item_categories
     //doc(array).item_categories(another array)
-    res.render("viewAllCategories", { all_categories: docs });
+    res.render("viewAllCategories", { all_categories: newUnique });
   } catch (err) {
     res.render("404");
     console.log(err);
