@@ -20,7 +20,14 @@ exports.manga_list = async function (req, res, next) {
 exports.get_manga_categories = async function (req, res, next) {
   try {
     //querydb for all categories accross all documents
-    res.render("viewAllCategories");
+    const docs = await Item.find({
+      item_categories: { $elemMatch: { category: { $ne: null } } },
+    })
+      .select("item_categories -_id")
+      .exec();
+    //docs is an array of documents, all we want is a list of the array from each doc called item_categories
+    //doc(array).item_categories(another array)
+    res.render("viewAllCategories", { all_categories: docs });
   } catch (err) {
     res.render("404");
     console.log(err);
