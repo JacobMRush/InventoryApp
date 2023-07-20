@@ -67,10 +67,31 @@ exports.manga_create = async function (req, res, next) {
   //used
   //create a new item via request body details?
   try {
-    let itemdetails = req.body; //probably should verify that these are non-empty
-    let citem = new Item(itemdetails);
+    let itemDetails = req.body; //probably should verify that these are non-empty
+    let {
+      item_name,
+      item_description,
+      item_categories,
+      price,
+      number_in_stock,
+      item_publisher,
+      item_author,
+    } = itemDetails;
+    item_categories = item_categories.split(" ");
+    for (i = 0; i < item_categories.length; i++) {
+      item_categories[i] = { category: item_categories[i] };
+    }
+    let citem = new Item({
+      item_name,
+      item_description,
+      item_categories,
+      price,
+      number_in_stock,
+      item_publisher,
+      item_author,
+    });
     await citem.save();
-    res.render("manga");
+    res.redirect("/manga");
   } catch (err) {
     res.send("Error creating item");
     console.log(err);

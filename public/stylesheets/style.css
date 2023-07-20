@@ -69,3 +69,13 @@ nav {
   color: darkslategrey;
   background-color: whitesmoke;
 }
+.create-form {
+  width: 100%;
+}
+.create-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
