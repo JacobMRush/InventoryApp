@@ -1,5 +1,9 @@
 extends layout 
 
-block content 
-    each val in all_categories
-        h1= val
+block content
+    +navbar
+    div(class="category-list-wrapper")
+        each cat in categoryKeys
+            a(href=`/manga/category/${cat}` class="category-list-and-number")
+                h1= cat 
+                h1= uniqueCategories[cat] 

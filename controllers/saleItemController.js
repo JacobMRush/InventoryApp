@@ -25,24 +25,29 @@ exports.get_manga_categories = async function (req, res, next) {
     })
       .select("item_categories -_id")
       .exec();
-    
+
     let unique = docs.map((it) => it.item_categories);
     let newUnique = unique.map((cat_arr) => {
-        return cat_arr;
+      return cat_arr;
     });
     //loop through newUnique and make a new object only holding one of each item and their counts
     let uniqueCategories = {};
-    for(let i = 0; i < newUnique.length; i++) {
-            console.log(newUnique[i]);
-            if(uniqueCategories[newUnique[i].category]) {
-                uniqueCategories[newUnique[i].category] += 1;
-            } else {
-                uniqueCategories[newUnique[i].category] = 1;
-            }
+    for (let i = 0; i < newUnique.length; i++) {
+      for (let j = 0; j < newUnique[i].length; j++) {
+        console.log(newUnique[i][j]);
+        if (uniqueCategories[newUnique[i][j].category]) {
+          uniqueCategories[newUnique[i][j].category] += 1;
+        } else {
+          uniqueCategories[newUnique[i][j].category] = 1;
+        }
+      }
     }
     console.log(uniqueCategories);
-
-    res.render("viewAllCategories", { all_categories: uniqueCategories });
+    let categoryKeys = Object.keys(uniqueCategories);
+    res.render("viewAllCategories", {
+      categoryKeys: categoryKeys,
+      uniqueCategories: uniqueCategories,
+    });
   } catch (err) {
     res.render("404");
     console.log(err);
