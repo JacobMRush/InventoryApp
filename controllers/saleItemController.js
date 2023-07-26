@@ -164,7 +164,8 @@ exports.manga_update = async function (req, res, next) {
 exports.manga_delete = async function (req, res, next) {
   let mangaID = req.params.id;
   try {
-    const doc = await Item.findOneAndDelete();
+    const doc = await Item.findOneAndDelete({ _id: mangaID }).exec();
+    res.redirect("/manga");
   } catch (err) {
     res.render("404");
     console.log(err);

@@ -1,4 +1,7 @@
 extends layout 
 
-block content 
+block content
+    +navbar
     h1= doc.item_name
+    form(action=`/manga/${doc._id}/delete` method="POST")
+        button(type="submit")="Delete"
