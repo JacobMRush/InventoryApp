@@ -56,7 +56,6 @@ exports.get_manga_categories = async function (req, res, next) {
 exports.manga_details = async function (req, res, next) {
   //used
   let mangaID = req.params.id;
-  console.log(mangaID);
   try {
     const doc = await Item.findById(mangaID).exec();
     res.render("viewItem", { doc: doc });
@@ -141,8 +140,9 @@ exports.select_manga_update = async function (req, res, next) {
 exports.get_manga_update = async function (req, res, next) {
   let mangaID = req.params._id;
   try {
+    const doc = await Item.findById(mangaID).exec();
     //request the manga item with the current ID
-    res.render("updateItem");
+    res.render("updateItem", {mangaInfo: doc});
   } catch (err) {
     res.render("404");
     console.log(err);
