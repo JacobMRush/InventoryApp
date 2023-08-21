@@ -2,4 +2,10 @@ extends layout
 
 block content 
     +navbar 
-    
+    h1=doc.item_name
+    h3=doc.item_description
+    h3=doc.number_in_stock
+    h3=doc.item_publisher
+    h3=doc.item_author 
+    h3=`$${doc.price}`
+    form(method='POST' action=`/manga/update/${doc._id}`)
