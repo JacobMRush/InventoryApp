@@ -56,7 +56,6 @@ exports.get_manga_categories = async function (req, res, next) {
 exports.manga_details = async function (req, res, next) {
   //used
   let mangaID = req.params.id;
-  console.log(mangaID);
   try {
     const doc = await Item.findById(mangaID).exec();
     res.render("viewItem", { doc: doc });
@@ -139,11 +138,13 @@ exports.select_manga_update = async function (req, res, next) {
   }
 };
 exports.get_manga_update = async function (req, res, next) {
-  let mangaID = req.body._id;
+  let mangaID = req.params.id;
   try {
+    const doc = await Item.findById(mangaID).exec();
+    //request the manga item with the current ID
     //get manga item ID and return it to user
 
-    res.render("updateItem");
+    res.render("updateItem", { doc: doc });
   } catch (err) {
     res.render("404");
     console.log(err);
