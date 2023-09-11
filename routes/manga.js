@@ -3,6 +3,10 @@ var router = express.Router();
 
 const itemController = require("../controllers/saleItemController");
 
+//Controller implenetation todo
+//finish implementing update section, (findoneandupdate)
+//implement replace
+
 //home page will display all the manga
 router.get("/", itemController.manga_list);
 // route /manga/:id will display a single posting's information

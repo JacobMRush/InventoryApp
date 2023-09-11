@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const Item = require("../models/saleItem");
 
+//finish implementing findoneandupdate
+//implement replacements
+
 //get all items in the list sorted by publisher
 exports.manga_list = async function (req, res, next) {
   //used
