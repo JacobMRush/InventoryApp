@@ -7,12 +7,17 @@ block content
             h1=doc.item_name
             h3=doc.item_description
             h3=doc.number_in_stock
-            each cat, index in doc.item_categories
-                if index < doc.item_categories.length-1
-                    h4(class="manga-cat-text")=`${cat.category}, `
-                else
-                    h4(class="manga-cat-text")= `${cat.category}`
+            section(class="manga-categories")
+                h3(id="manga-cat-spacer")= "Categories: "     
+                each cat, index in doc.item_categories
+                    if index < doc.item_categories.length-1
+                        h4(class="manga-cat-text")=`${cat.category}, `
+                    else
+                        h4(class="manga-cat-text")= `${cat.category}`
             h3=doc.item_publisher
             h3=doc.item_author 
             h3=`$${doc.price}`
         form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}`)
+            //how do I want do do this field? I could send back the original item (doc) and compare it with the posted item (new update fields)
+            //compare them and only update the new items
+            //or just have empty fields, and any non-empty field will be posted as the updated document

@@ -156,7 +156,7 @@ exports.get_manga_update = async function (req, res, next) {
 exports.manga_update = async function (req, res, next) {
   let mangaID = req.params.id;
   try {
-    const doc = await Item.findOneAndUpdate();
+    const doc = await Item.findByIdAndUpdate(mangaID);
   } catch (err) {
     res.render("404");
     console.log(err);
