@@ -139,7 +139,10 @@ exports.select_manga_update = async function (req, res, next) {
   }
 };
 exports.get_manga_update = async function (req, res, next) {
+  let mangaID = req.body._id;
   try {
+    //get manga item ID and return it to user
+
     res.render("updateItem");
   } catch (err) {
     res.render("404");
