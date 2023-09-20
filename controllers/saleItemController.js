@@ -156,9 +156,19 @@ exports.get_manga_update = async function (req, res, next) {
 exports.manga_update = async function (req, res, next) {
   let mangaID = req.params.id;
   //take the submitted items, deconstruct, check if it is empty. only update non-empty portions of an item
-
+  let ITEM_DETAILS = req.body;
+  Object.keys(ITEM_DETAILS).forEach(
+    (key) => !ITEM_DETAILS[key] && delete ITEM_DETAILS[key]
+  );
+  ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
+  for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
+    ITEM_DETAILS.item_categories[i] = {
+      category: ITEM_DETAILS.item_categories[i],
+    };
+  }
   try {
-    const doc = await Item.findByIdAndUpdate(mangaID);
+    const doc = await Item.findByIdAndUpdate(mangaID, ITEM_DETAILS);
+    res.redirect("/manga");
   } catch (err) {
     res.render("404");
     console.log(err);
@@ -172,6 +182,7 @@ exports.manga_update = async function (req, res, next) {
 //delete item
 exports.manga_delete = async function (req, res, next) {
   let mangaID = req.params.id;
+
   try {
     const doc = await Item.findOneAndDelete({ _id: mangaID }).exec();
     res.redirect("/manga");
@@ -181,22 +192,5 @@ exports.manga_delete = async function (req, res, next) {
   }
 };
 
-//get manga replace
-exports.get_manga_replace = async function (req, res, next) {
-  try {
-    res.render();
-  } catch (err) {
-    res.render("404");
-    console.log(err);
-  }
-};
-
-exports.manga_replace = async function (req, res, next) {
-  let mangaID = req.params.id;
-  try {
-    const doc = await Item.findOneAndReplace();
-  } catch (err) {
-    res.render("404");
-    console.log(err);
-  }
-};
+//Removed replace as it does not make sense here for me as far as I know. Update/Delete seems to be enough to cover for replace.
+//I don't see a use case where I would have a shop item that I would want to replace for another (instead of replace)
