@@ -155,6 +155,8 @@ exports.get_manga_update = async function (req, res, next) {
 };
 exports.manga_update = async function (req, res, next) {
   let mangaID = req.params.id;
+  //take the submitted items, deconstruct, check if it is empty. only update non-empty portions of an item
+
   try {
     const doc = await Item.findByIdAndUpdate(mangaID);
   } catch (err) {

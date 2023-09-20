@@ -121,3 +121,17 @@ nav {
   height: 80%;
   
 }
+.update-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 80%;
+}
+.update-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 60%;
+}

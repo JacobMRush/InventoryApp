@@ -17,7 +17,17 @@ block content
             h3=doc.item_publisher
             h3=doc.item_author 
             h3=`$${doc.price}`
-        form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}`)
-            //how do I want do do this field? I could send back the original item (doc) and compare it with the posted item (new update fields)
-            //compare them and only update the new items
-            //or just have empty fields, and any non-empty field will be posted as the updated document
+        div(class="update-form")
+            form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}`)
+                //how do I want do do this field? I could send back the original item (doc) and compare it with the posted item (new update fields)
+                //compare them and only update the new items
+                //or just have empty fields, and any non-empty field will be posted as the updated documents
+                input(type="text"   name="item_name"        placeholder=`${doc.item_name}` id="manga-name-create")
+                input(type="text"   name="item_description" placeholder=`${doc.item_description}` id="manga-description-create") 
+                input(type="text"   name="item_categories"  placeholder=`${doc.item_categories}` id="manga-categories-create" )
+                input(type="number" name="price"            placeholder=`${doc.price}` id="manga-price-create" min=0)
+                input(type="number" name="number_in_stock"  placeholder=`${doc.number_in_stock}` id="manga-stock-create" )
+                input(type="text"   name="item_publisher"   placeholder=`${doc.item_publisher}` id="manga-author-create" )
+                input(type="text"   name="item_author"      placeholder=`${doc.item_author}` id="manga-publisher-create")
+                input(type="submit")
+
