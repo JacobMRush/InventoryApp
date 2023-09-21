@@ -18,6 +18,7 @@ block content
             h3=doc.item_author 
             h3=`$${doc.price}`
         div(class="update-form")
+            h1= "Enter Updated Information"
             form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}`)
                 //how do I want do do this field? I could send back the original item (doc) and compare it with the posted item (new update fields)
                 //compare them and only update the new items

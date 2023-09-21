@@ -7,6 +7,35 @@ body {
   max-width: 100%;
   height: 100%;
   margin: 0;
+  color: darkslategrey;
+}
+.item-description-wrapper {
+  color: darkslategrey;
+  display: flex;
+  width: 100%;
+  height: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.item-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.delete-item-button button {
+  background-color: darkslategrey;
+  color: whitesmoke;
+  border-radius: 1rem;
+  padding: 5px 50px;
+}
+.delete-item-button button:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: darkslategrey;
+  border-color: darkslategrey;
 }
 .manga-click-div {
   text-decoration: none;
@@ -109,13 +138,14 @@ nav {
 
 .category-list-and-number {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 50px;
   align-items: center;
   flex-direction: row;
   width: 25%;
   height: 15%;
   text-decoration: none;
-  color: black;
+  color: darkslategrey;
 }
 .category-list-and-number:hover {
   cursor: pointer;
@@ -165,10 +195,25 @@ nav {
   align-items: center;
   width: 50%;
   height: 80%;
+  gap: 50px;
 }
 .update-form form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 60%;
+}
+
+.update-item-field input[type=submit] {
+  background-color: darkslategrey;
+  color: whitesmoke;
+  border-radius: 1rem;
+  padding: 5px;
+}
+
+.update-item-field input[type=submit]:hover {
+  background-color: whitesmoke;
+  color: darkslategrey;
+  border-color: darkslategrey;
+  cursor: pointer;
 }
