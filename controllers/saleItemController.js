@@ -37,7 +37,6 @@ exports.get_manga_categories = async function (req, res, next) {
     let uniqueCategories = {};
     for (let i = 0; i < newUnique.length; i++) {
       for (let j = 0; j < newUnique[i].length; j++) {
-        console.log(newUnique[i][j]);
         if (uniqueCategories[newUnique[i][j].category]) {
           uniqueCategories[newUnique[i][j].category] += 1;
         } else {
@@ -45,7 +44,6 @@ exports.get_manga_categories = async function (req, res, next) {
         }
       }
     }
-    console.log(uniqueCategories);
     let categoryKeys = Object.keys(uniqueCategories);
     res.render("viewAllCategories", {
       categoryKeys: categoryKeys,
@@ -157,16 +155,17 @@ exports.manga_update = async function (req, res, next) {
   let mangaID = req.params.id;
   //take the submitted items, deconstruct, check if it is empty. only update non-empty portions of an item
   let ITEM_DETAILS = req.body;
-  Object.keys(ITEM_DETAILS).forEach(
-    (key) => !ITEM_DETAILS[key] && delete ITEM_DETAILS[key]
-  );
-  ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
-  for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
-    ITEM_DETAILS.item_categories[i] = {
-      category: ITEM_DETAILS.item_categories[i],
-    };
-  }
+
   try {
+    Object.keys(ITEM_DETAILS).forEach(
+      (key) => !ITEM_DETAILS[key] && delete ITEM_DETAILS[key]
+    );
+    ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
+    for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
+      ITEM_DETAILS.item_categories[i] = {
+        category: ITEM_DETAILS.item_categories[i],
+      };
+    }
     const doc = await Item.findByIdAndUpdate(mangaID, ITEM_DETAILS);
     res.redirect("/manga");
   } catch (err) {
