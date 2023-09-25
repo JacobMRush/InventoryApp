@@ -3,4 +3,5 @@ extends layout
 block content 
     +navbar
     each item in category_list
-        h1= item.item_name
+        a(class="manga-list-categories-select" href=`/manga/item/${item._id}`)
+            h1= item.item_name

@@ -217,3 +217,8 @@ nav {
   border-color: darkslategrey;
   cursor: pointer;
 }
+
+.manga-list-categories-select {
+  text-decoration: none;
+  color: darkslategrey;
+}
