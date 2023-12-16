@@ -95,6 +95,7 @@ exports.manga_create = async function (req, res, next) {
   //create a new item via request body details?
   try {
     let itemDetails = req.body; //probably should verify that these are non-empty
+    let item_picture = req.file;
     let {
       item_name,
       item_description,
@@ -104,10 +105,13 @@ exports.manga_create = async function (req, res, next) {
       item_publisher,
       item_author,
     } = itemDetails;
+    //handling categories
     item_categories = item_categories.split(" ");
     for (i = 0; i < item_categories.length; i++) {
       item_categories[i] = { category: item_categories[i] };
     }
+    //handle image submission
+    console.log(item_picture); 
     let citem = new Item({
       item_name,
       item_description,

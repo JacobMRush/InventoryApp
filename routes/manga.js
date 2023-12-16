@@ -1,4 +1,6 @@
 const express = require("express");
+const multer = require('multer');
+const upload = multer({dest: '../public/data/uploads/'});
 var router = express.Router();
 
 const itemController = require("../controllers/saleItemController");
@@ -23,7 +25,7 @@ router.get("/category/:category", itemController.manga_category);
 
 //render and post create item
 router.get("/create", itemController.get_manga_create);
-router.post("/create", itemController.manga_create);
+router.post("/create", upload.single('item_picture') ,itemController.manga_create);
 
 router.post("/:id/delete", itemController.manga_delete);
 
