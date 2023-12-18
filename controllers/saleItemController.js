@@ -150,10 +150,12 @@ exports.select_manga_update = async function (req, res, next) {
       item_name: { $ne: null },
       item_publisher: { $ne: null },
     }).exec();
+    if(!docs.length) {
+      throw new Error({error: "Error getting item postings"});
+    }
     res.render("selectUpdate", { manga_list: docs });
   } catch (err) {
-    res.render("404");
-    console.log(err);
+    res.render("errorPage", {error: "Error getting item postings"});
   }
 };
 exports.get_manga_update = async function (req, res, next) {
@@ -162,11 +164,12 @@ exports.get_manga_update = async function (req, res, next) {
     const doc = await Item.findById(mangaID).exec();
     //request the manga item with the current ID
     //get manga item ID and return it to user
-
+    if(doc === null) {
+      throw new Error({error: "Error getting updated item"});
+    }
     res.render("updateItem", { doc: doc });
   } catch (err) {
-    res.render("404");
-    console.log(err);
+    res.render("errorPage", {error: "Error getting updated item"});
   }
 };
 exports.manga_update = async function (req, res, next) {
@@ -185,10 +188,12 @@ exports.manga_update = async function (req, res, next) {
       };
     }
     const doc = await Item.findByIdAndUpdate(mangaID, ITEM_DETAILS);
+    if(doc === null) {
+      throw new Error({error: "Error updating item"});
+    }
     res.redirect("/manga");
   } catch (err) {
-    res.render("404");
-    console.log(err);
+    res.render("errorPage", {error: "Error updating item"});
   }
 
   //find item to update
