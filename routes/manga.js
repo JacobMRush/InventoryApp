@@ -1,6 +1,33 @@
 const express = require("express");
 const multer = require('multer');
-const upload = multer({dest: '../public/data/uploads/'});
+const path = require('path');
+
+function checkFileType(req, file,cb) {
+    const acceptedFiles = /jpeg|jpg|png/;
+    const checkExtName = acceptedFiles.test((path.extname(file.originalname)).toLowerCase());
+    //check MIME type (Multipurpose internet mail extensions) basically any form of possible attached media
+    const checkMIME = acceptedFiles.test(file.mimetype);
+    if(checkExtName && checkMIME) {
+        return cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+const storage = multer.diskStorage({
+    destination: function(req,file, cb) {
+        cb(null, 'public/data/uploads/');
+    }
+})
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 8000000,
+        files: 1
+    },
+    fileFilter: function (req,file,cb) {
+        checkFileType(req, file,cb);
+    }
+});
 var router = express.Router();
 
 const itemController = require("../controllers/saleItemController");
