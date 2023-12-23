@@ -39,7 +39,7 @@ body {
 }
 .manga-click-div {
   text-decoration: none;
-  width: 33%;
+  width: 20%;
   height: 50%;
   color: darkslategrey;
 }
@@ -174,7 +174,7 @@ nav {
   display:flex; 
   justify-content: space-between;
   align-items: center;
-  width:100%;
+  width: 100%;
   height: 100%;
 }
 
@@ -221,4 +221,29 @@ nav {
 .manga-list-categories-select {
   text-decoration: none;
   color: darkslategrey;
+}
+
+.price-and-stock {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  justify-self: start;
+  margin-left: 10px;
+}
+
+.card-img-container {
+  width: 100%;
+  height: 50%;
+}
+
+.card-img {
+  width: auto;
+  height: 100%;
 }

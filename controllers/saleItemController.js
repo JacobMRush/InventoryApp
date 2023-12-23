@@ -1,8 +1,16 @@
 const mongoose = require("mongoose");
 const Item = require("../models/saleItem");
+const fs = require("fs").promises;
 
-//finish implementing findoneandupdate
-//implement replacements
+async function deleteImage(image_path) {
+  try {
+    await fs.unlink(image_path);
+    console.log("File has been deleted");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 
 //get all items in the list sorted by publisher
 exports.manga_list = async function (req, res, next) {
@@ -110,8 +118,8 @@ exports.manga_create = async function (req, res, next) {
     if(!req.file) {
       throw new Error({error: "Bad file upload"});
     }
-    
-    let item_picture = req.file;
+    let createdPath = req.file.destination.split("public/");
+    let item_picture_path = createdPath[1] + req.file.filename;
     let {
       item_name,
       item_description,
@@ -135,6 +143,7 @@ exports.manga_create = async function (req, res, next) {
       number_in_stock,
       item_publisher,
       item_author,
+      item_picture_path
     });
     await citem.save();
     res.redirect("/manga");
@@ -209,6 +218,10 @@ exports.manga_delete = async function (req, res, next) {
     if(doc === null) {
       throw new Error({error: "There was an error deleting the document."});
     }
+    //remove image from public directory if posting is currently deleted
+    let image_path = doc.item_picture_path;
+    deleteImage(image_path);
+
     res.redirect("/manga");
   } catch (err) {
     res.render("errorPage", {error: "There was an error deleting the document"});

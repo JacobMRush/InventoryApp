@@ -14,7 +14,7 @@ const Item = new Schema({
     number_in_stock: {type: Number, required: true, min: 0},
     item_publisher: {type: String, required: true},
     item_author: {type: String, required: true},
-    item_image: {type: String}
+    item_picture_path: {type: String, required: true},
 });
 
 

@@ -5,10 +5,11 @@ block content
         each val in manga_list
             a(class="manga-click-div" href=`/manga/item/${val._id}`)
                 section(class="manga-card")
-                    h1= val.item_name
-                    p= val.item_description 
-                    p= `$${val.price}.00`
-                    p= `${val.number_in_stock} left in stock`
+                    div(class="card-img-container")
+                        img(src=val.item_picture_path class="card-img")
+                    div(class="card-header")
+                        h1= val.item_name
+                        p= val.item_description 
                     p= `${val.item_publisher}`
                     p= `${val.item_author}`
                     section(class="manga-categories")
@@ -18,3 +19,6 @@ block content
                                 h4(class="manga-cat-text")=`${cat.category}, `
                             else
                                 h4(class="manga-cat-text")= `${cat.category}`
+                    div(class="price-and-stock")
+                        p= `$${val.price}.00`
+                        p= `${val.number_in_stock} left in stock`
