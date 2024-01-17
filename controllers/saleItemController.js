@@ -27,7 +27,6 @@ exports.manga_list = async function (req, res, next) {
 
   } catch (err) {
     res.render("errorPage", {error: "No items to populate page"});
-    console.log(err);
   }
 };
 //get a single item's details
@@ -118,8 +117,10 @@ exports.manga_create = async function (req, res, next) {
     if(!req.file) {
       throw new Error({error: "Bad file upload"});
     }
+    console.log(req.file);
     let createdPath = req.file.destination.split("public/");
     let item_picture_path = createdPath[1] + req.file.filename;
+    console.log(createdPath);
     let {
       item_name,
       item_description,
@@ -148,6 +149,7 @@ exports.manga_create = async function (req, res, next) {
     await citem.save();
     res.redirect("/manga");
   } catch (err) {
+    console.log(err);
     res.render("errorPage", {error: "Bad file upload, only JPEG/JPG and PNG are allowed"}); 
   }
 };
@@ -219,7 +221,7 @@ exports.manga_delete = async function (req, res, next) {
       throw new Error({error: "There was an error deleting the document."});
     }
     //remove image from public directory if posting is currently deleted
-    let image_path = doc.item_picture_path;
+    let image_path = `public/${doc.item_picture_path}`;
     deleteImage(image_path);
 
     res.redirect("/manga");

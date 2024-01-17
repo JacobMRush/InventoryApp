@@ -2,14 +2,16 @@ const express = require("express");
 const multer = require('multer');
 const path = require('path');
 
-function checkFileType(req, file,cb) {
+function checkFileType(file,cb) {
     const acceptedFiles = /jpeg|jpg|png/;
     const checkExtName = acceptedFiles.test((path.extname(file.originalname)).toLowerCase());
     //check MIME type (Multipurpose internet mail extensions) basically any form of possible attached media
-    const checkMIME = acceptedFiles.test(file.mimetype);
+    const checkMIME = acceptedFiles.test(file.mimetype.split('/')[1]);
     if(checkExtName && checkMIME) {
+        console.log('entered');
         return cb(null, true);
     } else {
+        console.log("failed entered");
         cb(null, false);
     }
 }
@@ -25,7 +27,7 @@ const upload = multer({
         files: 1
     },
     fileFilter: function (req,file,cb) {
-        checkFileType(req, file,cb);
+        checkFileType(file,cb);
     }
 });
 var router = express.Router();

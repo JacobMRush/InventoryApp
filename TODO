@@ -1,0 +1,11 @@
+NEED
+    -CSS responsive design for mobile (probably not for tablets)
+    -Access control - destruction and creation should either be A) limited to certain users or B) Well controlled and sanitized, decide and go for it
+    -Verify everything is functional
+        -Update page is currently not functional due to image addition, fix this
+        -verify error handling is done in a somewhat useful manner, (DO NOT crash the entire server for a single upload error)
+
+Nice to have
+    -Improve design as I go, I would have liked to focus on this more, but was a bit overwhelmed with learning a bunch of new information
+        -Verify image inputs
+        -Verify/Sanitized text inputs 

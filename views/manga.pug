@@ -7,18 +7,17 @@ block content
                 section(class="manga-card")
                     div(class="card-img-container")
                         img(src=val.item_picture_path class="card-img")
-                    div(class="card-header")
-                        h1= val.item_name
-                        p= val.item_description 
-                    p= `${val.item_publisher}`
-                    p= `${val.item_author}`
-                    section(class="manga-categories")
-                        h3(id="manga-cat-spacer")= "Categories: "
-                        each cat, index in val.item_categories
-                            if index < val.item_categories.length-1
-                                h4(class="manga-cat-text")=`${cat.category}, `
-                            else
-                                h4(class="manga-cat-text")= `${cat.category}`
-                    div(class="price-and-stock")
-                        p= `$${val.price}.00`
-                        p= `${val.number_in_stock} left in stock`
+                    div(class="item-information")
+                        div(class="card-header")
+                            h1= val.item_name
+                            p= val.item_description 
+                        div(class="card-names")
+                            p= `${val.item_publisher}`
+                            p= `${val.item_author}`
+                        div(class="price-and-stock")
+                            p= `$${val.price}.00`
+                            p= `${val.number_in_stock} left in stock`
+                        section(class="manga-categories")
+                            h3(id="manga-cat-spacer")= "Categories: "
+                            each cat, index in val.item_categories
+                                h4(class="manga-cat-text")=`${cat.category}`
