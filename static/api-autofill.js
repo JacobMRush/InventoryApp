@@ -27,7 +27,7 @@ async function fillFormData(title, desc, imageSrc, slug) {
     let categories = "";
     itemData.map((item, index) => {
         if(index != itemData.length-1) {
-            categories += `${item.attributes.title},`
+            categories += `${item.attributes.title}, `
         } else {
             categories += `${item.attributes.title}`;
         }
