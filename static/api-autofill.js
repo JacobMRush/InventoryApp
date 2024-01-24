@@ -90,3 +90,15 @@ function removeSearchRecs() {
     }
 
 }
+
+function debounce (fn, time) {
+    var timer;
+    return function() {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, time)
+    }
+}
+
+let api_call = debounce(autoFillItem, 500);

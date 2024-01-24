@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  max-width: 50%;
 }
 .delete-item-button button {
   background-color: darkslategrey;
@@ -33,13 +33,14 @@ body {
 }
 .manga-click-div {
   text-decoration: none;
-  max-width: 20%;
-  min-height: 50%;
+  max-width: 25%;
+  min-height: 25%;
+  max-height: 50%;
   color: darkslategrey;
 }
 .full-manga-section {
   max-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -311,6 +312,19 @@ nav {
 .item-information {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 50%;
+  max-width: 100%;
+  min-height: 33%;
+  max-height: 50%;
+}
+
+.view-manga-picture {
+  height: auto;
+  max-width: 20%;
+}
+
+.sbs-details {
+  max-width: 100%;
+  min-width: 50%;
+  display: flex;
+  justify-content: space-around;
 }

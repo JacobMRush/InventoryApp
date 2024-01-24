@@ -4,9 +4,15 @@ block content
     +navbar
     div(class="item-description-wrapper")
         div(class="item-description")
+            img(src=`../../../${doc.item_picture_path}` class="view-manga-picture")
             h1=doc.item_name
-            h3=doc.item_description
-            h3=`${doc.number_in_stock} in stock`
+            p=doc.item_description
+            div(class="sbs-details")
+                h3=`$${doc.price}`
+                h3=`${doc.number_in_stock} in stock`
+            div(class="sbs-details")
+                h3=`Publisher: ${doc.item_publisher}`
+                h3=`Author: ${doc.item_author}` 
             section(class="manga-categories")
                 h3(id="manga-cat-spacer")= "Categories: "     
                 each cat, index in doc.item_categories
@@ -14,8 +20,7 @@ block content
                         h4(class="manga-cat-text")=`${cat.category}, `
                     else
                         h4(class="manga-cat-text")= `${cat.category}`
-            h3=doc.item_publisher
-            h3=doc.item_author 
-            h3=`$${doc.price}`
+
+            
         form(class="delete-item-button" action=`/manga/${doc._id}/delete` method="POST")
             button(type="submit")="Delete"

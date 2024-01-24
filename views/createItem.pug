@@ -6,7 +6,7 @@ block content
         h1= "Create a new stock item"
         div(class="create-form")
             form(method="POST" action="/manga/create" enctype="multipart/form-data")
-                input(type="text"   name="item_name" placeholder="Listing Title" id="manga-name-create" onChange ="autoFillItem()" required)
+                input(type="text"   name="item_name" placeholder="Listing Title" id="manga-name-create" onKeyUp ="api_call()" required)
                 input(type="text"   name="item_description" placeholder="Manga Description" id="manga-description-create" required)
                 input(type="text"   name="item_categories"  placeholder="Manga Categories" id="manga-categories-create" required)
                 input(type="number" name="price"            placeholder='10.00' id="manga-price-create" min=10 required)

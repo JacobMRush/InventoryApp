@@ -131,7 +131,7 @@ exports.manga_create = async function (req, res, next) {
       item_author,
     } = itemDetails;
     //handling categories
-    item_categories = item_categories.split(" ");
+    item_categories = item_categories.split(",");
     for (i = 0; i < item_categories.length; i++) {
       item_categories[i] = { category: item_categories[i] };
     }
