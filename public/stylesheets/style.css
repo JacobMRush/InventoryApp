@@ -1,7 +1,14 @@
+html {
+  width: 100%;
+  height: 100%;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
   color: darkslategrey;
+  height: 100%;
+  overflow-x: hidden;
+
 }
 .item-description-wrapper {
   color: darkslategrey;
@@ -17,7 +24,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 50%;
+  width: 50%;
 }
 .delete-item-button button {
   background-color: darkslategrey;
@@ -33,15 +40,13 @@ body {
 }
 .manga-click-div {
   text-decoration: none;
-  max-width: 25%;
-  min-height: 25%;
-  max-height: 50%;
+  width: 24%;
+  height: 80%;
   color: darkslategrey;
 }
 .full-manga-section {
-  max-width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -52,8 +57,8 @@ body {
   gap: 10px;
 }
 .manga-card {
-  max-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
   display: flex;
   justify-content: center;
@@ -61,13 +66,21 @@ body {
   flex-direction: column;
 }
 .manga-categories {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.manga-cat-text-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center ;
+  width: 80%;
+  justify-content: flex-start;
+  align-items: center;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .manga-cat-text {
   font-weight: 100;
@@ -80,10 +93,10 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
   background-color: darkslategray;
   color: whitesmoke;
-  min-height: 10%;
+  height: 5%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -103,7 +116,7 @@ nav {
 }
 
 .create-item-container {
-  min-height: 80vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,7 +153,7 @@ nav {
   border-color: darkslategray;
 } 
 .rec-container {
-  max-width: 50%;
+  width: 50%;
   transform: translateX(0%) translateY(-4%);
   position: absolute;
   background-color: rgba(47,79,79, 0.8);
@@ -158,7 +171,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
   height: 75px;
   gap: 10px;
 }
@@ -168,7 +181,7 @@ nav {
   background-color: rgba(47,79,79,0.8);
 }
 .rec-card h3 {
-  max-width: 30%;
+  width: 30%;
 }
 .rec-card img {
   max-width: auto;
@@ -176,7 +189,7 @@ nav {
 }
 
 .rec-card p {
-  max-width: 60%;
+  width: 60%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -185,33 +198,37 @@ nav {
 .category-list-and-number {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 25px;
   align-items: center;
   flex-direction: row;
-  width: 25%;
-  height: 15%;
+  width: 10%;
+  height: 10%;
   text-decoration: none;
   color: darkslategrey;
+  border: 1px solid whitesmoke;
 }
 .category-list-and-number:hover {
   cursor: pointer;
 }
 .category-list-wrapper {
   display: flex;
-  justify-content: space-evenly; 
+  justify-content: flex-start; 
   align-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width:80%;
   height: 100%;
+  margin: 0 auto;
+}
+.individual-categories {
+  display: flex;
 }
 .select-update-item {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 20px;  
-  height: 100%;
   width: 100%;
   color: darkslategrey;
 }
@@ -232,7 +249,6 @@ nav {
   text-align: left;
   width: 50%;
   height: 80%;
-  
 }
 .update-form {
   display: flex;
@@ -270,7 +286,7 @@ nav {
 }
 
 .price-and-stock {
-  max-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
@@ -281,17 +297,20 @@ nav {
   justify-content: flex-start;
   align-self: flex-start;
   margin-left: 10px;
-  max-width: 100%;
-
+  width: 98%;
+  height: 40%;
 }
 .card-header h1 {
   margin-bottom: 0;
 }
 .card-header p {
+  display: -webkit-box;
   margin-top: 0;
   font-size: 1em;
-  max-width: 100%;
-  min-height: 50%;
+  width: 100%;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .card-names {
   display: flex;
@@ -301,20 +320,19 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
+  width: 80%;
   height: auto;
 }
 
 .card-img {
-  max-width: 80%;
+  width: 80%;
   height: auto;
 }
 .item-information {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  min-height: 33%;
-  max-height: 50%;
+  width: 100%;
+  height: 50%;
 }
 
 .view-manga-picture {

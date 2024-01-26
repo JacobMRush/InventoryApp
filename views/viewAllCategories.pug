@@ -5,5 +5,5 @@ block content
     div(class="category-list-wrapper")
         each cat in categoryKeys
             a(href=`/manga/category/${cat}` class="category-list-and-number")
-                h1= cat 
-                h1= uniqueCategories[cat] 
+                h3= cat 
+                h3= uniqueCategories[cat] 

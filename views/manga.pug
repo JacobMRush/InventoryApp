@@ -10,7 +10,7 @@ block content
                     div(class="item-information")
                         div(class="card-header")
                             h1= val.item_name
-                            p= val.item_description 
+                            p(class="card-item-description")= val.item_description 
                         div(class="card-names")
                             p= `${val.item_publisher}`
                             p= `${val.item_author}`
@@ -19,5 +19,9 @@ block content
                             p= `${val.number_in_stock} left in stock`
                         section(class="manga-categories")
                             h3(id="manga-cat-spacer")= "Categories: "
-                            each cat, index in val.item_categories
-                                h4(class="manga-cat-text")=`${cat.category}`
+                            div(class="manga-cat-text-wrapper")
+                                each cat, index in val.item_categories
+                                    if index == val.item_categories.length-1
+                                        h4(class="manga-cat-text")=`${cat.category}`
+                                    else
+                                        h4(class="manga-cat-text")=`${cat.category},`
