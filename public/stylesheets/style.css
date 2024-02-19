@@ -241,6 +241,10 @@ nav {
   height: 100%;
 }
 
+#update-item-desc {
+  padding-left: 25px;
+}
+
 .pre-updated-item {
   display: flex;
   justify-content: center;

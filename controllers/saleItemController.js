@@ -187,21 +187,36 @@ exports.manga_update = async function (req, res, next) {
   let mangaID = req.params.id;
   //take the submitted items, deconstruct, check if it is empty. only update non-empty portions of an item
   let ITEM_DETAILS = req.body;
-
+  console.log(req.file);
   try {
     Object.keys(ITEM_DETAILS).forEach(
       (key) => !ITEM_DETAILS[key] && delete ITEM_DETAILS[key]
     );
-    ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
-    for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
-      ITEM_DETAILS.item_categories[i] = {
-        category: ITEM_DETAILS.item_categories[i],
-      };
+    if(ITEM_DETAILS.item_categories) {
+      ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
+      for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
+        ITEM_DETAILS.item_categories[i] = {
+          category: ITEM_DETAILS.item_categories[i],
+        };
+      }
+    }
+
+    
+    if(req.file) {
+      console.log("ENTERED");
+      let createdPath = req.file.destination.split("public/");
+      let item_picture_path = createdPath[1] + req.file.filename;
+      ITEM_DETAILS.item_picture_path = item_picture_path;
     }
     const doc = await Item.findByIdAndUpdate(mangaID, ITEM_DETAILS);
     if(doc === null) {
       throw new Error({error: "Error updating item"});
     }
+    if(doc !== null && req.file) {
+      let image_path = `public/${doc.item_picture_path}`;
+      deleteImage(image_path);
+    }
+    console.log(doc);
     res.redirect("/manga");
   } catch (err) {
     res.render("errorPage", {error: "Error updating item"});

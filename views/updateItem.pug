@@ -6,22 +6,25 @@ block content
         div(class="pre-updated-item")
             img(src=`../../../${doc.item_picture_path}` class="view-manga-picture")
             h1=doc.item_name
-            h3=doc.item_description
-            h3=doc.number_in_stock
+            h4(id="update-item-desc")=doc.item_description
+            div(class="sbs-details")
+                h3=doc.number_in_stock + " in stock"
+                h3=`$${doc.price}`
+            div(class="sbs-details")
+                h3=doc.item_author 
+                h3=doc.item_publisher
             section(class="manga-categories")
                 h3(id="manga-cat-spacer")= "Categories: "
-                div(class="manga-cat-text-wrapper")     
+                div(class="individual-categories")     
                     each cat, index in doc.item_categories
                         if index < doc.item_categories.length-1
                             h4(class="manga-cat-text")=`${cat.category}, `
                         else
                             h4(class="manga-cat-text")= `${cat.category}`
-            h3=doc.item_publisher
-            h3=doc.item_author 
-            h3=`$${doc.price}`
+            
         div(class="update-form")
             h1= "Enter Updated Information"
-            form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}`)
+            form(class="update-item-field" method='POST' action=`/manga/update/${doc._id}` enctype="multipart/form-data")
                 //how do I want do do this field? I could send back the original item (doc) and compare it with the posted item (new update fields)
                 //compare them and only update the new items
                 //or just have empty fields, and any non-empty field will be posted as the updated documents
@@ -32,5 +35,6 @@ block content
                 input(type="number" name="number_in_stock"  placeholder=`${doc.number_in_stock}` id="manga-stock-create" )
                 input(type="text"   name="item_publisher"   placeholder=`${doc.item_publisher}` id="manga-author-create" )
                 input(type="text"   name="item_author"      placeholder=`${doc.item_author}` id="manga-publisher-create")
+                input(type="file"   name="item_picture_update" placeholder="Item Picture" id="manga-picture-upload" accept=".jpg, .jpeg, .png")
                 input(type="submit")
 

@@ -44,7 +44,7 @@ router.get("/", itemController.manga_list);
 router.get("/item/:id", itemController.manga_details);
 
 //UPDATE POSTINGS
-router.post("/update/:id", itemController.manga_update);
+router.post("/update/:id", upload.single("item_picture_update"), itemController.manga_update);
 router.get("/update/:id", itemController.get_manga_update);
 router.get("/update", itemController.select_manga_update); //user will selected an item and it will direct them to "/update/:id"
 
@@ -56,6 +56,6 @@ router.get("/category/:category", itemController.manga_category);
 router.get("/create", itemController.get_manga_create);
 router.post("/create", upload.single('item_picture') ,itemController.manga_create);
 
-router.post("/:id/delete", itemController.manga_delete);
+router.post("/:id/delete", upload.none() , itemController.manga_delete);
 
 module.exports = router;
