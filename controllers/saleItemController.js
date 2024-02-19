@@ -203,7 +203,6 @@ exports.manga_update = async function (req, res, next) {
 
     
     if(req.file) {
-      console.log("ENTERED");
       let createdPath = req.file.destination.split("public/");
       let item_picture_path = createdPath[1] + req.file.filename;
       ITEM_DETAILS.item_picture_path = item_picture_path;
@@ -216,7 +215,6 @@ exports.manga_update = async function (req, res, next) {
       let image_path = `public/${doc.item_picture_path}`;
       deleteImage(image_path);
     }
-    console.log(doc);
     res.redirect("/manga");
   } catch (err) {
     res.render("errorPage", {error: "Error updating item"});
