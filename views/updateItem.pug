@@ -30,7 +30,7 @@ block content
                 //or just have empty fields, and any non-empty field will be posted as the updated documents
                 input(type="text"   name="item_name"        placeholder=`${doc.item_name}` id="manga-name-create")
                 input(type="text"   name="item_description" placeholder=`${doc.item_description}` id="manga-description-create") 
-                input(type="text"   name="item_categories"  placeholder=`${doc.item_categories}` id="manga-categories-create" )
+                input(type="text"   name="item_categories"  placeholder=`${doc.item_categories[0].category}` id="manga-categories-create" )
                 input(type="number" name="price"            placeholder=`${doc.price}` id="manga-price-create" min=0)
                 input(type="number" name="number_in_stock"  placeholder=`${doc.number_in_stock}` id="manga-stock-create" )
                 input(type="text"   name="item_publisher"   placeholder=`${doc.item_publisher}` id="manga-author-create" )
