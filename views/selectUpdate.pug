@@ -22,7 +22,6 @@ block content
                             p= `$${val.price}.00`
                             p= `${val.number_in_stock} left in stock`
                         section(class="manga-categories")
-                            h3(id="manga-cat-spacer")= "Categories: "
                             div(class="manga-cat-text-wrapper")
                                 each cat, index in val.item_categories
                                     if index == val.item_categories.length-1

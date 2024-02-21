@@ -19,13 +19,13 @@ exports.manga_list = async function (req, res, next) {
     const docs = await Item.find({
       item_name: { $ne: null },
       item_publisher: { $ne: null },
-    }).sort({ item_publisher: 1 }).exec();
+    }).sort({ item_name: 1 }).exec();
     if(!docs.length) {
       throw new Error({error: "No matching documents found"});
     }
-    res.render("manga", { manga_list: docs });
-
+    res.render("manga", { manga_list: docs })
   } catch (err) {
+    console.log(err);
     res.render("errorPage", {error: "No items to populate page"});
   }
 };
