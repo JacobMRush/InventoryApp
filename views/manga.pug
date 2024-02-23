@@ -2,7 +2,7 @@ extends layout
 block content
     +navbar
     section(class="full-manga-section")
-        each val in manga_list
+        each val, index in manga_list
             a(class="manga-click-div" href=`/manga/item/${val._id}`)
                 section(class="manga-card")
                     div(class="card-img-container")
@@ -19,8 +19,4 @@ block content
                             p= `${val.number_in_stock} left in stock`
                         section(class="manga-categories")
                             div(class="manga-cat-text-wrapper")
-                                each cat, index in val.item_categories
-                                    if index == val.item_categories.length-1
-                                        h4(class="manga-cat-text")=`${cat.category}`
-                                    else
-                                        h4(class="manga-cat-text")=`${cat.category},`
+                                h4(class="manga-cat-text")= `${categories[index]}` 
