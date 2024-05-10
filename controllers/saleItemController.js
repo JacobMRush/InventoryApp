@@ -23,12 +23,12 @@ exports.manga_list = async function (req, res, next) {
     if(!docs.length) {
       throw new Error({error: "No matching documents found"});
     }
-    let categories = [];
+    let categories = "";
     for(let i = 0; i < docs.length; i++) {
-      categories[i] = ""; 
+      categories = ""; 
       for(let j = 0; j < docs[i].item_categories.length; j++) {
         if(j == docs[i].item_categories.length - 1) {
-          categories[i] += docs[i].item_categories[j].category;
+          categories += docs[i].item_categories[j].category;
           continue;
         }
         categories[i] += docs[i].item_categories[j].category + ", ";
