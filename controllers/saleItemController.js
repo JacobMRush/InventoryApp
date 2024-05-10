@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Item = require("../models/saleItem");
 const fs = require("fs").promises;
-
+//before create/destroy verify person is capable of doing so - how do we authenticate
 async function deleteImage(image_path) {
   try {
     await fs.unlink(image_path);

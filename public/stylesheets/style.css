@@ -74,15 +74,21 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   padding-left: 10px;
   padding-right: 10px;
   gap: 5px;
-  overflow: hidden
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .manga-cat-text {
   display: block;
-  font-weight: 100;
+  font-weight: 100;  
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
 }
 #manga-cat-spacer {
   padding-right: 10px;
