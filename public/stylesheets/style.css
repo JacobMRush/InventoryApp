@@ -296,7 +296,12 @@ nav {
 .price-and-stock {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.price-and-stock p {
+  width: 50%;
+  text-align: center;
 }
 
 .card-header {
@@ -306,7 +311,7 @@ nav {
   align-self: flex-start;
   margin-left: 10px;
   width: 98%;
-  height: 40%;
+  max-height: 70%;
 }
 .card-header h1 {
   margin-bottom: 0;
@@ -316,13 +321,23 @@ nav {
   margin-top: 0;
   font-size: 1em;
   width: 100%;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .card-names {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  width: 100%;
+  color: grey;
+}
+
+#publisher-header {
+  text-align: left;
+}
+#author-header {
+  text-align: right;
+  padding-right: 15px;
 }
 .card-img-container {
   display: flex;
