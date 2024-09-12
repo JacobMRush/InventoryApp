@@ -1,29 +1,25 @@
 extends layout 
 block content
-    title="help"
     +navbar
     div(class="select-update-item")
         h1="Select a manga listing to update"
     section(class="full-manga-section")
-        each val in manga_list
+        each val, index in manga_list
             a(class="manga-click-div" href=`/manga/update/${val._id}`)
                 section(class="manga-card")
                     div(class="card-img-container")
-                        img(src=`../../${val.item_picture_path}` class="card-img")
+                        img(src=`/${val.item_picture_path}` class="card-img")
                     div(class="item-information")
                         div(class="card-header")
                             h1= val.item_name
+                            div(class="card-names")
+                                p(id="publisher-header")= `${val.item_publisher}`
+                                p(id="author-header")= `${val.item_author}`
                             p(class="card-item-description")= val.item_description 
-                        div(class="card-names")
-                            p= `${val.item_publisher}`
-                            p= `${val.item_author}`
                         div(class="price-and-stock")
                             p= `$${val.price}.00`
-                            p= `${val.number_in_stock} left in stock`
+                            p= `${val.number_in_stock} left`
                         section(class="manga-categories")
                             div(class="manga-cat-text-wrapper")
-                                each cat, index in val.item_categories
-                                    if index == val.item_categories.length-1
-                                        h4(class="manga-cat-text")=`${cat.category}`
-                                    else
-                                        h4(class="manga-cat-text")=`${cat.category},`
+                                h4(class="manga-cat-text")= `${categories[index]}` 
+

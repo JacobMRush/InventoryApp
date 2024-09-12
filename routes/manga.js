@@ -1,34 +1,36 @@
 const express = require("express");
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const path = require("path");
 
-function checkFileType(file,cb) {
-    const acceptedFiles = /jpeg|jpg|png/;
-    const checkExtName = acceptedFiles.test((path.extname(file.originalname)).toLowerCase());
-    //check MIME type (Multipurpose internet mail extensions) basically any form of possible attached media
-    const checkMIME = acceptedFiles.test(file.mimetype.split('/')[1]);
-    if(checkExtName && checkMIME) {
-        console.log('entered');
-        return cb(null, true);
-    } else {
-        console.log("failed entered");
-        cb(null, false);
-    }
+function checkFileType(file, cb) {
+  const acceptedFiles = /jpeg|jpg|png/;
+  const checkExtName = acceptedFiles.test(
+    path.extname(file.originalname).toLowerCase()
+  );
+  //check MIME type (Multipurpose internet mail extensions) basically any form of possible attached media
+  const checkMIME = acceptedFiles.test(file.mimetype.split("/")[1]);
+  if (checkExtName && checkMIME) {
+    console.log("entered");
+    return cb(null, true);
+  } else {
+    console.log("failed entered");
+    cb(null, false);
+  }
 }
 const storage = multer.diskStorage({
-    destination: function(req,file, cb) {
-        cb(null, 'public/data/uploads/');
-    }
-})
+  destination: function (req, file, cb) {
+    cb(null, "public/data/uploads/");
+  },
+});
 const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 8000000,
-        files: 1
-    },
-    fileFilter: function (req,file,cb) {
-        checkFileType(file,cb);
-    }
+  storage: storage,
+  limits: {
+    fileSize: 8000000,
+    files: 1,
+  },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
 });
 var router = express.Router();
 
@@ -44,7 +46,11 @@ router.get("/", itemController.manga_list);
 router.get("/item/:id", itemController.manga_details);
 
 //UPDATE POSTINGS
-router.post("/update/:id", upload.single("item_picture_update"), itemController.manga_update);
+router.post(
+  "/update/:id",
+  upload.single("item_picture_update"),
+  itemController.manga_update
+);
 router.get("/update/:id", itemController.get_manga_update);
 router.get("/update", itemController.select_manga_update); //user will selected an item and it will direct them to "/update/:id"
 
@@ -54,8 +60,12 @@ router.get("/category/:category", itemController.manga_category);
 
 //render and post create item
 router.get("/create", itemController.get_manga_create);
-router.post("/create", upload.single('item_picture') ,itemController.manga_create);
+router.post(
+  "/create",
+  upload.single("item_picture"),
+  itemController.manga_create
+);
 
-router.post("/:id/delete", upload.none() , itemController.manga_delete);
+router.post("/:id/delete", upload.none(), itemController.manga_delete);
 
 module.exports = router;

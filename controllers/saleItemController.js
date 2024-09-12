@@ -11,7 +11,6 @@ async function deleteImage(image_path) {
   }
 }
 
-
 //get all items in the list sorted by publisher
 exports.manga_list = async function (req, res, next) {
   //used
@@ -19,27 +18,28 @@ exports.manga_list = async function (req, res, next) {
     const docs = await Item.find({
       item_name: { $ne: null },
       item_publisher: { $ne: null },
-    }).sort({ item_name: 1 }).exec();
-    if(!docs.length) {
-      throw new Error({error: "No matching documents found"});
+    })
+      .sort({ item_name: 1 })
+      .exec();
+    if (!docs.length) {
+      throw new Error({ error: "No matching documents found" });
     }
     let categories = [];
-    for(let i = 0; i < docs.length; i++) {
+    for (let i = 0; i < docs.length; i++) {
       categories[i] = "";
-      for(let j = 0; j < docs[i].item_categories.length; j++) {
-        if(j == docs[i].item_categories.length - 1) {
+      for (let j = 0; j < docs[i].item_categories.length; j++) {
+        if (j == docs[i].item_categories.length - 1) {
           categories[i] += docs[i].item_categories[j].category;
           continue;
         }
         categories[i] += docs[i].item_categories[j].category + ", ";
-
       }
       console.log(categories[i]);
     }
-    res.render("manga", { manga_list: docs, categories: categories})
+    res.render("manga", { manga_list: docs, categories: categories });
   } catch (err) {
     console.log(err);
-    res.render("errorPage", {error: "No items to populate page"});
+    res.render("errorPage", { error: "No items to populate page" });
   }
 };
 //get a single item's details
@@ -52,8 +52,8 @@ exports.get_manga_categories = async function (req, res, next) {
       .select("item_categories -_id")
       .exec();
 
-    if(!docs.length) {
-      throw new Error({error: "No categories found"});
+    if (!docs.length) {
+      throw new Error({ error: "No categories found" });
     }
     let unique = docs.map((it) => it.item_categories);
     let newUnique = unique.map((cat_arr) => {
@@ -76,7 +76,7 @@ exports.get_manga_categories = async function (req, res, next) {
       uniqueCategories: uniqueCategories,
     });
   } catch (err) {
-    res.render("errorPage", {error: "No listed categories found"});
+    res.render("errorPage", { error: "No listed categories found" });
   }
 };
 exports.manga_details = async function (req, res, next) {
@@ -84,12 +84,12 @@ exports.manga_details = async function (req, res, next) {
   let mangaID = req.params.id;
   try {
     const doc = await Item.findById(mangaID).exec();
-    if(doc === null) {
-      throw new Error({error: "DNE"});
+    if (doc === null) {
+      throw new Error({ error: "DNE" });
     }
     res.render("viewItem", { doc: doc });
   } catch (err) {
-    res.render("errorPage", {error: "No matching item found"});
+    res.render("errorPage", { error: "No matching item found" });
   }
 };
 //get items based on category
@@ -101,13 +101,13 @@ exports.manga_category = async function (req, res, next) {
       item_categories: { $elemMatch: { category: selectedCategory } },
     }).exec();
 
-    if(!docs.length) {
-      throw new Error({error: "No items in selected category"});
+    if (!docs.length) {
+      throw new Error({ error: "No items in selected category" });
     }
-    
+
     res.render("viewCategory", { category_list: docs });
   } catch (err) {
-    res.render("errorPage", {error: "No items in selected category"});
+    res.render("errorPage", { error: "No items in selected category" });
   }
 };
 //get create item page
@@ -126,9 +126,9 @@ exports.manga_create = async function (req, res, next) {
   //create a new item via request body details?
   try {
     let itemDetails = req.body; //probably should verify that these are non-empty
-    
-    if(!req.file) {
-      throw new Error({error: "Bad file upload"});
+
+    if (!req.file) {
+      throw new Error({ error: "Bad file upload" });
     }
     console.log(req.file);
     let createdPath = req.file.destination.split("public/");
@@ -157,29 +157,46 @@ exports.manga_create = async function (req, res, next) {
       number_in_stock,
       item_publisher,
       item_author,
-      item_picture_path
+      item_picture_path,
     });
     await citem.save();
     res.redirect("/manga");
   } catch (err) {
     console.log(err);
-    res.render("errorPage", {error: "Bad file upload, only JPEG/JPG and PNG are allowed"}); 
+    res.render("errorPage", {
+      error: "Bad file upload, only JPEG/JPG and PNG are allowed",
+    });
   }
 };
 //update item
 exports.select_manga_update = async function (req, res, next) {
+  //used
   try {
-    //get all manga postings
     const docs = await Item.find({
       item_name: { $ne: null },
       item_publisher: { $ne: null },
-    }).exec();
-    if(!docs.length) {
-      throw new Error({error: "Error getting item postings"});
+    })
+      .sort({ item_name: 1 })
+      .exec();
+    if (!docs.length) {
+      throw new Error({ error: "No matching documents found" });
     }
-    res.render("selectUpdate", { manga_list: docs });
+    let categories = [];
+    for (let i = 0; i < docs.length; i++) {
+      categories[i] = "";
+      for (let j = 0; j < docs[i].item_categories.length; j++) {
+        if (j == docs[i].item_categories.length - 1) {
+          categories[i] += docs[i].item_categories[j].category;
+          continue;
+        }
+        categories[i] += docs[i].item_categories[j].category + ", ";
+      }
+      console.log(categories[i]);
+    }
+    res.render("selectUpdate", { manga_list: docs, categories: categories });
   } catch (err) {
-    res.render("errorPage", {error: "Error getting item postings"});
+    console.log(err);
+    res.render("errorPage", { error: "No items to populate page" });
   }
 };
 exports.get_manga_update = async function (req, res, next) {
@@ -188,12 +205,12 @@ exports.get_manga_update = async function (req, res, next) {
     const doc = await Item.findById(mangaID).exec();
     //request the manga item with the current ID
     //get manga item ID and return it to user
-    if(doc === null) {
-      throw new Error({error: "Error getting updated item"});
+    if (doc === null) {
+      throw new Error({ error: "Error getting updated item" });
     }
     res.render("updateItem", { doc: doc });
   } catch (err) {
-    res.render("errorPage", {error: "Error getting updated item"});
+    res.render("errorPage", { error: "Error getting updated item" });
   }
 };
 exports.manga_update = async function (req, res, next) {
@@ -205,7 +222,7 @@ exports.manga_update = async function (req, res, next) {
     Object.keys(ITEM_DETAILS).forEach(
       (key) => !ITEM_DETAILS[key] && delete ITEM_DETAILS[key]
     );
-    if(ITEM_DETAILS.item_categories) {
+    if (ITEM_DETAILS.item_categories) {
       ITEM_DETAILS.item_categories = ITEM_DETAILS.item_categories.split(" ");
       for (i = 0; i < ITEM_DETAILS.item_categories.length; i++) {
         ITEM_DETAILS.item_categories[i] = {
@@ -214,23 +231,22 @@ exports.manga_update = async function (req, res, next) {
       }
     }
 
-    
-    if(req.file) {
+    if (req.file) {
       let createdPath = req.file.destination.split("public/");
       let item_picture_path = createdPath[1] + req.file.filename;
       ITEM_DETAILS.item_picture_path = item_picture_path;
     }
     const doc = await Item.findByIdAndUpdate(mangaID, ITEM_DETAILS);
-    if(doc === null) {
-      throw new Error({error: "Error updating item"});
+    if (doc === null) {
+      throw new Error({ error: "Error updating item" });
     }
-    if(doc !== null && req.file) {
+    if (doc !== null && req.file) {
       let image_path = `public/${doc.item_picture_path}`;
       deleteImage(image_path);
     }
     res.redirect("/manga");
   } catch (err) {
-    res.render("errorPage", {error: "Error updating item"});
+    res.render("errorPage", { error: "Error updating item" });
   }
 
   //find item to update
@@ -243,8 +259,8 @@ exports.manga_delete = async function (req, res, next) {
   let mangaID = req.params.id;
   try {
     const doc = await Item.findOneAndDelete({ _id: mangaID }).exec();
-    if(doc === null) {
-      throw new Error({error: "There was an error deleting the document."});
+    if (doc === null) {
+      throw new Error({ error: "There was an error deleting the document." });
     }
     //remove image from public directory if posting is currently deleted
     let image_path = `public/${doc.item_picture_path}`;
@@ -252,7 +268,9 @@ exports.manga_delete = async function (req, res, next) {
 
     res.redirect("/manga");
   } catch (err) {
-    res.render("errorPage", {error: "There was an error deleting the document"});
+    res.render("errorPage", {
+      error: "There was an error deleting the document",
+    });
   }
 };
 
