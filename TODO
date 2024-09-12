@@ -1,6 +1,5 @@
 NEED
 -CSS responsive design for mobile (probably not for tablets)
--Verify everything is functional
 -verify error handling is done in a somewhat useful manner, (DO NOT crash the entire server for a single upload error)
 -Verify/Sanitized text inputs
 -Access control - destruction and creation should either be A) limited to certain users or B) Well controlled and sanitized, decide and go for it
