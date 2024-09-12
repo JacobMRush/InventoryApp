@@ -1,20 +1,17 @@
 NEED
-    -CSS responsive design for mobile (probably not for tablets)
-    -Verify everything is functional
-        -verify error handling is done in a somewhat useful manner, (DO NOT crash the entire server for a single upload error)
+-CSS responsive design for mobile (probably not for tablets)
+-Verify everything is functional
+-verify error handling is done in a somewhat useful manner, (DO NOT crash the entire server for a single upload error)
+-Verify/Sanitized text inputs
+-Access control - destruction and creation should either be A) limited to certain users or B) Well controlled and sanitized, decide and go for it
+-Improve design as I go, I would have liked to focus on this more, but was a bit overwhelmed with learning a bunch of new information
 
-Nice to have
-
-    -Verify/Sanitized text inputs 
-
-Working on
-    -Access control - destruction and creation should either be A) limited to certain users or B) Well controlled and sanitized, decide and go for it
-    -Improve design as I go, I would have liked to focus on this more, but was a bit overwhelmed with learning a bunch of new information
-
+-Homepage design seems acceptable, should add responsiveness
+-Update page design seems off, also needs responsiveness
+-Create page seems functional, needs responsiveness
+-Categories page seems not useful, maybe add a sidebar on main page with category filters? and add an authorization section for nav bar
 
 Completed
+
 - Update page is currently not functional due to image addition, fix this
 - Verify image inputs (did but not fully since I plan on putting image uploads behind a login)
-
-Note to self:
-    I feel like if I began to add user auth and ensure a person can only edit and see their own posts, I will require a user collection or a complete reconstruction of my model/DB in favor of a relational database such as SQL. I think instead I will either 
